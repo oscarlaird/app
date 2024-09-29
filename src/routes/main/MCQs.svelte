@@ -15,7 +15,7 @@
     n = 2;
 
     async function f() {
-        await fetch('./questions.json')
+        await fetch(`http://127.0.0.1:5001/topics?topic=${topic.name}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
