@@ -43,7 +43,7 @@
             console.log("Enter pressed");
             let fake_completion_promise = fake_progress.set(100);
             // all_topics.set(topics_3);
-            let dataload_promise = fetch(`http://127.0.0.1:5000/subjects?subject=${subject}`)
+            let dataload_promise = fetch(`http://127.0.0.1:5001/subjects?subject=${subject}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log('data loaded', data);
