@@ -8,7 +8,7 @@
     import topics_3 from '$lib/dummy/toplevel.json';
     import { all_topics } from '$lib/stores';
     let generating;
-    let fake_progress = tweened(0, { duration: 2000 });
+    let fake_progress = tweened(0, { duration: 15000 });
     let subject;
 
     let i = 0;
