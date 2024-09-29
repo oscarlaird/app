@@ -39,6 +39,7 @@
         overflow-y: scroll;
         /* background-color: aqua; */
         width: 100%;
+        background-color: var(--surface);
         background-image: url("./faust.png");
         background-size: cover;
         border: 2px solid var(--primary);

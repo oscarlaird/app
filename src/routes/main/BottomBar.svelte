@@ -10,7 +10,7 @@
 <div class="container">
     <button class="button back">Back</button>
     <ProgressBar n={n} N={N} discrete={discrete} />
-    <button class="button forward">Up Next: Video</button>
+    <!-- <button class="button forward">Up Next: Video</button> -->
 </div>
 
 <style>
