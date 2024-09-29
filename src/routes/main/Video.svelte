@@ -64,6 +64,7 @@
             rel: 0,
             modestbranding: 1,
             controls: 0,
+            autoplay: 1,
         }
         });
     }

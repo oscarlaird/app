@@ -10,6 +10,7 @@
     import { all_topics } from '$lib/stores';
     let activities = [];
 
+
     let acts3 = [];
     console.log('topics3', topics_3);
     function build_acts3_from_all_topics() {

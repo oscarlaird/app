@@ -1,5 +1,6 @@
 <script>
     import ProgressBar from "./ProgressBar.svelte";
+    import { current_topic, next_topic } from "$lib/stores";
     export let n;
     export let N;
     export let discrete;
@@ -7,6 +8,7 @@
 
 </script>
 
+{@debug $next_topic}
 <div class="container">
     <button class="button back">Back</button>
     <ProgressBar n={n} N={N} discrete={discrete} />
