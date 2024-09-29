@@ -72,6 +72,7 @@
     .explanation {
         font-style: italic;
         height: 2.5rem;
+        min-height: 2.5rem;
     }
     .explanation_video {
 
