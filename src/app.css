@@ -1,0 +1,18 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Roboto', 'Nunito', sans-serif;
+    /* soft gentle warm color gradient */
+    background: linear-gradient(to bottom right, #FFF5E1, #ffc9b9);
+
+}
+
+:root {
+    /* --primary: #2C3E50; */   
+    --primary: #003264;
+    /* --panel: #fafbea; */
+    --panel: none;
+    --surface: #fbfffb;
+    --radius: 8px;
+}

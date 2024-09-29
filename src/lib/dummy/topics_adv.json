@@ -1,0 +1,32 @@
+[
+    {"id": 1, "name": "Literary background of Faust","type": "video",
+            "content": {
+                    "title": "Video Title",
+                    "youtubeId": "Q7oVDMVXyqw",
+                    "start": 100,
+                    "end": 110
+                }
+    },  
+    {"id": 2, "name": "The Faustian legend", "type": "video",
+            "content": {
+                    "title": "Video Title",
+                    "youtubeId": "SKpm_yBtXBQ",
+                    "start": 30,
+                    "end": 60
+                }
+    },
+    {"id": 3, "name": "The Faustian theme in literature", "type": "flashcards",
+            "content": [
+                {"front": "What is the Faustian theme?", "back": "The Faustian theme is a common theme in literature that involves a character making a pact with the devil in exchange for knowledge, power, or some other desire."},
+                {"front": "What is the origin of the Faustian theme?", "back": "The Faustian theme is named after the character Faust, who is the protagonist of a classic German legend."},
+                {"front": "What are some famous works that feature the Faustian theme?", "back": "Some famous works that feature the Faustian theme include Goethe's Faust, Marlowe's Doctor Faustus, and Mann's Doctor Faustus."}
+            ]
+    },
+    {"id": 4, "name": "The Faustian theme in art", "type": "quiz",
+            "content": [
+                {"question": "Who is the protagonist of the Faustian legend?", "options": ["Faust", "Mephistopheles", "Goethe", "Marlowe"], "correct_answer_idx": 0, "explanation": "Faust is the protagonist of the Faustian legend."},
+                {"question": "What is the Faustian theme?", "options": ["A pact with the devil", "A love story", "A war epic", "A comedy"], "correct_answer_idx": 0, "explanation": "The Faustian theme involves a character making a pact with the devil."},
+                {"question": "Which of the following works features the Faustian theme?", "options": ["Romeo and Juliet", "Hamlet", "Faust", "Macbeth"], "correct_answer_idx": 2, "explanation": "Faust is a famous work that features the Faustian theme."}
+            ]
+    }
+]
