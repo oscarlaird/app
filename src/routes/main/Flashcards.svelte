@@ -2,18 +2,50 @@
     // import real_flashcards from "$lib/dummy/flashcards.json";
     export let topic;
     import { fly, fade } from 'svelte/transition';
+    import { onMount } from 'svelte';
     let real_flashcards = topic?.content;
+    let loading = topic?.content === null;
     import Flashcard from "./Flashcard.svelte";
     /* prepend a null card */
-    let flashcards = [{front: "", back: ""}, ...real_flashcards];
+    // let flashcards = [{front: "", back: ""}, ...real_flashcards];
+    let flashcards = [{front: "", back: ""}, {front: "Loading...", back: ""}];
     let curr_flashcard_idx = 1;
     let container;
 
     export let n;
     export let N;
     $: n = curr_flashcard_idx;
-    $: N = real_flashcards.length;
+    $: N = flashcards.length - 1;
 
+    async function f() {
+        await fetch('./questions.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let retrieved_flashcards = data["questions"].map((q) => {
+                    return {
+                        'front': q['flashcard_question'],
+                        'back': q['flashcard_answer']
+                    }
+                });
+                // block 2s TODO
+                flashcards = [{front: "", back: ""}, ...retrieved_flashcards];
+                loading = false;
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+
+    }
+
+    onMount(async () => {
+        // fetch the flashcards from the server
+
+        setTimeout(() => {
+            f();
+        }, 1000);
+        
+    });
 </script>
 
 <div class="container" bind:this={container}

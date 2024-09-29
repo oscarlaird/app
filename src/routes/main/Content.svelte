@@ -35,6 +35,8 @@
 <style>
     .container {
         height: 100%;
+        max-height: 100%;
+        overflow-y: scroll;
         /* background-color: aqua; */
         width: 100%;
         background-image: url("./faust.png");

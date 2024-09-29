@@ -6,11 +6,57 @@
     import FlashcardsIcon from './icons/FlashcardsIcon.svelte';
 
     import topics_2 from '$lib/dummy/spaghetti.json';
-    console.log(topics_2);
+    import topics_3 from '$lib/dummy/toplevel.json';
+    import { all_topics } from '$lib/stores';
     let activities = [];
+
+    let acts3 = [];
+    console.log('topics3', topics_3);
+    function build_acts3_from_all_topics() {
+        let acts = [];
+        for (let key in $all_topics) {
+            // video activity
+            let activity = {};
+            let content = {};
+            activity['name'] = key;
+            activity['type'] = 'video';
+            content['youtubeId'] = $all_topics[key]['id'];
+            content['start'] = 0;
+            content['end'] = 300;
+            activity['content'] = content;
+            activity['depth'] = 0;
+            acts.push(activity);
+            // flashcard activities
+            activity = {};
+            content = {};
+            activity['name'] = key;
+            activity['type'] = 'flashcards';
+            content['youtubeId'] = $all_topics[key]['id'];
+            activity['content'] = null;
+            activity['depth'] = 1;
+            acts.push(activity);
+            // quiz activities
+            activity = {};
+            content = {};
+            activity['name'] = key;
+            activity['type'] = 'quiz';
+            content['youtubeId'] = $all_topics[key]['id'];
+            activity['content'] = null;
+            activity['depth'] = 1;
+            acts.push(activity); 
+        }
+        return acts;
+    }
+    acts3 = build_acts3_from_all_topics();
+
+    all_topics.subscribe((value) => {
+        console.log('all_topics', value);
+        acts3 = build_acts3_from_all_topics();
+    });
+
+
     // iterate thru the topics_2 object
     for (let key in topics_2) {
-        console.log(key);
         // video
         let activity = {};
         let content = {};
@@ -20,6 +66,7 @@
         content['start'] = topics_2[key]['segment'][0];
         content['end'] = topics_2[key]['segment'][1];
         activity['content'] = content;
+        activity['depth'] = 0;
         activities.push(activity);
         // flashcards
         activity = {};
@@ -32,6 +79,7 @@
                 'back': q['flashcard_answer']
             }
         });
+        activity['depth'] = 1;
         activities.push(activity);
         // quiz
         activity = {};
@@ -43,9 +91,12 @@
                 'question': q['question'],
                 'options': q['wrong_answers'].concat([q['correct_answer']]),
                 'correct_answer_idx': 3,
-                'explanation': q['explanation']
+                'explanation': q['explanation'],
+                'timestamp': q['timestamp'],
+                'youtubeId': topics_2[key]['id'] // n.b. every single mcq carries the same video id, whereas it is only stated once in video content
             }
         });
+        activity['depth'] = 1;
         activities.push(activity);
 
 
@@ -69,8 +120,12 @@
             {/if}
         </div>
         <div class="topics">
-            {#each activities as topic}
+            {#each acts3 as topic}
                 <div class="topic row" on:click={() => current_topic.set(topic)}>
+                    {#each Array.from({length: topic?.depth || 0}) as _}
+                        <div class="iconbox indentbox">
+                        </div>
+                    {/each}
                     <div class="iconbox">
                     {#if topic.type==="video"}
                         <VideoIcon width="50px" height="50px" />
@@ -83,6 +138,11 @@
                     <div class="rowtext">
                         {topic.name}
                     </div>
+                    {#if topic.type==="video"}
+                        <div class="depth_button">
+                            +
+                        </div>
+                    {/if}
                 </div>
             {/each}
         </div>
@@ -98,13 +158,13 @@
         align-items: center;
         box-sizing: border-box;
         color: var(--primary);
+        /* outline: 1px solid red; */
     }
 
     .inner {
         width: 100%;
         outline: 2px solid var(--primary);
-        min-height: 300px;
-        height: 100%;
+        height: 1400px;
         overflow: hidden;
         border-radius: var(--radius);
         display: flex;
@@ -145,6 +205,7 @@
         display: flex;
         flex-direction: row;
         gap: 10px;
+        position: relative;
     }
     .iconbox {
         height: 50px;
@@ -161,6 +222,28 @@
 
     .topic:hover {
         background-color: #e0e0e0;
+    }
+    .depth_button {
+        position: absolute;
+        right: 10px;
+        height: 50px;
+        width: 50px;
+        color: var(--surface);
+        border-color: var(--surface);
+        background-color: var(--primary);
+        border-width: 2px;
+        border-style: solid;
+
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .depth_button:hover {
+        background-color: var(--surface);
+        color: var(--primary);
+        border-color: var(--primary);
+        transform: scale(1.0);
     }
 </style>
 

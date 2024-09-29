@@ -59,16 +59,20 @@
     .content_and_bottom_container {
         width: 80%;
         height: 100%;
+        max-height: 1400px;
+        overflow-y: scroll;
         display: flex;
         flex-direction: column;
         gap: 10px;
         justify-content: space-between;
+        box-sizing: border-box;
     }
 
     .content_container {
         width: 100%;
         flex: 1;
         background-color: var(--panel);
+        overflow-y: scroll;
         padding: 0 0px;
         box-sizing: border-box;
     }

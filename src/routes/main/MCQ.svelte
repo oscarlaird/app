@@ -1,6 +1,8 @@
 <script>
+    import Video from "./Video.svelte";
     export let mcq;
     let selectedOption = -1;
+    $: wrong = selectedOption !== -1 && selectedOption !== mcq.correct_answer_idx;
 </script>
 
 <div class="mcq">
@@ -19,10 +21,19 @@
         </div>
         {/each}
     </div>
+    {#if wrong}
+    <div class="option explanation">
+        {mcq.explanation}
+    </div>
+    <!-- <div class="option explanation_video">
+    <Video topic={{type: "video", content: {youtubeId: mcq.youtubeId, start: mcq.timestamp, end: 1000}}}/>
+    </div> -->
+    {/if}
 </div>
 
 <style>
     .mcq {
+        min-height: 300px;
         width: 100%;
         outline: 2px solid var(--primary);
         background-color: var(--surface);
@@ -57,5 +68,11 @@
     }
     .option.incorrectSelection {
         background-color: lightcoral;
+    }
+    .explanation {
+        font-style: italic;
+    }
+    .explanation_video {
+
     }
 </style>
