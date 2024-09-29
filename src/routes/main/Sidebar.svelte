@@ -139,11 +139,6 @@
                     <div class="rowtext">
                         {topic.name}
                     </div>
-                    {#if topic.type==="video"}
-                        <div class="depth_button">
-                            +
-                        </div>
-                    {/if}
                 </div>
             {/each}
         </div>
