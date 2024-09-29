@@ -11,6 +11,15 @@
     let currentTime = 0;
 
     $: refreshPlayer(topic);
+    $: if (show === false) {
+        stopPlayer();
+    }
+
+    function stopPlayer() {
+        if (player) {
+            player.stopVideo();
+        }
+    }
 
     function refreshPlayer(topic) {
         let video;

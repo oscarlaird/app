@@ -20,9 +20,13 @@
         <Video topic={$current_topic} bind:n bind:N />
 
         {#if $current_topic?.type==="quiz"}
-            <MCQs topic={$current_topic} bind:n bind:N />
+            {#key $current_topic.name}
+                <MCQs topic={$current_topic} bind:n bind:N />
+            {/key}
         {:else if $current_topic?.type==="flashcards"}
-            <Flashcards topic={$current_topic} bind:n bind:N />
+            {#key $current_topic.name}
+                <Flashcards topic={$current_topic} bind:n bind:N />
+            {/key}
         {/if}
     </div>
 </div>

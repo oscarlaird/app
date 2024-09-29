@@ -6,6 +6,7 @@
     import FlashcardsIcon from './icons/FlashcardsIcon.svelte';
 
     import topics_2 from '$lib/dummy/spaghetti.json';
+    console.log(topics_2);
     let activities = [];
     // iterate thru the topics_2 object
     for (let key in topics_2) {
@@ -29,6 +30,20 @@
             return {
                 'front': q['flashcard_question'],
                 'back': q['flashcard_answer']
+            }
+        });
+        activities.push(activity);
+        // quiz
+        activity = {};
+        content = {};
+        activity['name'] = key;
+        activity['type'] = 'quiz';
+        activity['content'] = topics_2[key]['questions'].map((q) => {
+            return {
+                'question': q['question'],
+                'options': q['wrong_answers'].concat([q['correct_answer']]),
+                'correct_answer_idx': 3,
+                'explanation': q['explanation']
             }
         });
         activities.push(activity);
